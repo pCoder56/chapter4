@@ -1,6 +1,7 @@
 package Students.insert;
 
 import DBConnection.DBConnection;
+import Students.Student;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,24 +11,24 @@ public class Insert {
 
     private DBConnection dbConnection = new DBConnection();
 
-    public void insert() throws SQLException {
+    public void insert(Student student) throws SQLException {
         String query = " INSERT INTO students( name, age, batch ) values (?,?,?)";
         Connection connection = dbConnection.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(query);
-        preparedStatement.setString(1, "Pooja");
-        preparedStatement.setInt(2,22);
-        preparedStatement.setInt(3, 2075);
+        preparedStatement.setString(1, student.getName());
+        preparedStatement.setInt(2, student.getAge());
+        preparedStatement.setInt(3,  student.getBatch());
         preparedStatement.execute();
     }
 
-    public static void main(String[] args) {
-        Insert insertToDB = new Insert();
-        try{
-            insertToDB.insert();
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-    }
+//    public static void main(String[] args) {
+//        Insert insertToDB = new Insert();
+//        try{
+//            insertToDB.insert();
+//        }
+//        catch (Exception e)
+//        {
+//            e.printStackTrace();
+//        }
+//    }
 }
