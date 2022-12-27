@@ -18,9 +18,16 @@ public class CreateTable {
                 "age INTEGER, " +
                 "batch INTEGER, " +
                 "PRIMARY KEY (id))";
+
+        String query1 = "CREATE TABLE IF NOT EXISTS images" +
+                        "(id INTEGER NOT NULL AUTO_INCREMENT, " +
+                        "image BLOB, "+
+                        "PRIMARY KEY (id))";
+
         try {
             Statement statement = dbConnection.getConnection().createStatement();
             statement.execute(query);
+            statement.execute(query1);
             return true;
 
         } catch (Exception e) {
